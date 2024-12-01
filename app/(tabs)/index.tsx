@@ -24,6 +24,7 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { Link, useNavigation } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
@@ -35,7 +36,7 @@ export default function Screen() {
     setProgress(Math.floor(Math.random() * 100));
   }
   return (
-    <View className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
+    <SafeAreaView className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
       <Card className="w-full max-w-sm p-6 rounded-2xl">
         <CardHeader className="items-center">
           <Avatar alt="Rick Sanchez's Avatar" className="w-24 h-24">
@@ -114,7 +115,15 @@ export default function Screen() {
         <Link href="/login" className="text-center text-sm text-sky-600">
           Go to Login
         </Link>
+
+        <Link href="/sign-up" className="text-center text-sm text-sky-600">
+          Go to Signup
+        </Link>
+
+        <Link href="/onboarding" className="text-center text-sm text-sky-600">
+          Go to Onboarding
+        </Link>
       </Card>
-    </View>
+    </SafeAreaView>
   );
 }
