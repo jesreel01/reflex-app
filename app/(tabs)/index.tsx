@@ -9,6 +9,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Text } from "~/components/ui/text";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { Carousel, Colors, Spacings } from "react-native-ui-lib";
+import _ from "lodash";
+import { Card } from "~/components/ui/card";
+import { AntDesign, Fontisto } from "@expo/vector-icons";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
@@ -19,6 +23,20 @@ export default function Screen() {
   function updateProgressValue() {
     setProgress(Math.floor(Math.random() * 100));
   }
+
+  const BACKGROUND_COLORS = [
+    Colors.red50,
+    Colors.yellow20,
+    Colors.purple50,
+    Colors.green50,
+    Colors.cyan50,
+    Colors.purple20,
+    Colors.blue60,
+    Colors.red10,
+    Colors.green20,
+    Colors.purple60,
+  ];
+
   return (
     <SafeAreaView className="flex-1 px-5 py-5">
       <View className="flex-row justify-between align-middle">
@@ -48,7 +66,7 @@ export default function Screen() {
           </Pressable>
         </View>
       </View>
-      
+
       <View className="mt-8 flex-row justify-start gap-x-4">
         <Avatar alt="Profile image" className="w-14 h-14">
           <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
@@ -62,6 +80,35 @@ export default function Screen() {
             How are you today?
           </Text>
         </View>
+      </View>
+      <View className="mt-8 w-full">
+        <Carousel
+          // onChangePage={onChangePage}
+          pageWidth={340 - Spacings.s5 * 2}
+          itemSpacings={Spacings.s3}
+          initialPage={1}
+          containerStyle={{ height: 80 }}
+        >
+          <Card className="h-[80px] border-0 bg-gray-100 p-3 item-center flex-row justify-between">
+            <View>
+              <View className="flex-row">
+                <Text className="font-semibold text-lg">Sat </Text>
+                <Text className="text-lg pt-[1px]">Nov 30</Text>
+              </View>
+              <View className="flex-row items-center">
+                <Text className="font-semibold pr-4 text-xl">
+                  32/35 <Text className="text-muted-foreground">°C</Text>
+                </Text>
+                <Fontisto name="cloudy-gusts" size={18} />
+              </View>
+            </View>
+            <View className="bg-white h-[60px] w-[60px] rounded-lg justify-center items-center">
+              <AntDesign  name="calendar" size={28} color="black" />
+            </View>
+          </Card>
+          <Card className="h-24 border-0 bg-gray-100"></Card>
+          <Card className="h-24 border-0 bg-gray-100"></Card>
+        </Carousel>
       </View>
     </SafeAreaView>
   );
