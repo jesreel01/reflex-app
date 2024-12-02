@@ -8,6 +8,7 @@ import Animated, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text } from "~/components/ui/text";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
@@ -47,13 +48,18 @@ export default function Screen() {
           </Pressable>
         </View>
       </View>
-
-      <View className="flex-row justify-start">
-        <Text>Profile Icon</Text>
+      
+      <View className="mt-8 flex-row justify-start gap-x-4">
+        <Avatar alt="Profile image" className="w-14 h-14">
+          <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
+          <AvatarFallback>
+            <Text>ZN</Text>
+          </AvatarFallback>
+        </Avatar>
         <View>
-          <Text className="text-lg font-semibold">John Doe</Text>
-          <Text className="text-sm text-muted-foreground">
-            Software Engineer
+          <Text className="text-2xl font-semibold">Hello, John!</Text>
+          <Text className="text-base text-muted-foreground font-semibold">
+            How are you today?
           </Text>
         </View>
       </View>
