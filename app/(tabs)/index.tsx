@@ -106,8 +106,40 @@ export default function Screen() {
               <AntDesign  name="calendar" size={28} color="black" />
             </View>
           </Card>
-          <Card className="h-24 border-0 bg-gray-100"></Card>
-          <Card className="h-24 border-0 bg-gray-100"></Card>
+          <Card className="h-[80px] border-0 bg-gray-100 p-3 item-center flex-row justify-between">
+            <View>
+              <View className="flex-row">
+                <Text className="font-semibold text-lg"> Sun </Text>
+                <Text className="text-lg pt-[1px]">Dec 01</Text>
+              </View>
+              <View className="flex-row items-center">
+                <Text className="font-semibold pr-4 text-xl">
+                  32/35 <Text className="text-muted-foreground">°C</Text>
+                </Text>
+                <Fontisto name="cloudy-gusts" size={18} />
+              </View>
+            </View>
+            <View className="bg-white h-[60px] w-[60px] rounded-lg justify-center items-center">
+              <AntDesign  name="calendar" size={28} color="black" />
+            </View>
+          </Card>
+          <Card className="h-[80px] border-0 bg-gray-100 p-3 item-center flex-row justify-between">
+            <View>
+              <View className="flex-row">
+                <Text className="font-semibold text-lg">Sat </Text>
+                <Text className="text-lg pt-[1px]">Dec 02</Text>
+              </View>
+              <View className="flex-row items-center">
+                <Text className="font-semibold pr-4 text-xl">
+                  32/35 <Text className="text-muted-foreground">°C</Text>
+                </Text>
+                <Fontisto name="cloudy-gusts" size={18} />
+              </View>
+            </View>
+            <View className="bg-white h-[60px] w-[60px] rounded-lg justify-center items-center">
+              <AntDesign  name="calendar" size={28} color="black" />
+            </View>
+          </Card>
         </Carousel>
       </View>
     </SafeAreaView>
