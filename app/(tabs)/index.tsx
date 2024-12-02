@@ -1,30 +1,13 @@
 import * as React from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import Animated, {
   FadeInUp,
   FadeOutDown,
   LayoutAnimationConfig,
 } from "react-native-reanimated";
-import { Info } from "~/lib/icons/Info";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
-import { Progress } from "~/components/ui/progress";
-import { Text } from "~/components/ui/text";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/components/ui/tooltip";
-import { Link, useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "~/components/ui/text";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
@@ -36,94 +19,44 @@ export default function Screen() {
     setProgress(Math.floor(Math.random() * 100));
   }
   return (
-    <SafeAreaView className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
-      <Card className="w-full max-w-sm p-6 rounded-2xl">
-        <CardHeader className="items-center">
-          <Avatar alt="Rick Sanchez's Avatar" className="w-24 h-24">
-            <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
-            <AvatarFallback>
-              <Text>RS</Text>
-            </AvatarFallback>
-          </Avatar>
-          <View className="p-3" />
-          <CardTitle className="pb-2 text-center">Rick Sanchez</CardTitle>
-          <View className="flex-row">
-            <CardDescription className="text-base font-semibold">
-              Scientist
-            </CardDescription>
-            <Tooltip delayDuration={150}>
-              <TooltipTrigger className="px-2 pb-0.5 active:opacity-50">
-                <Info
-                  size={14}
-                  strokeWidth={2.5}
-                  className="w-4 h-4 text-foreground/70"
-                />
-              </TooltipTrigger>
-              <TooltipContent className="py-2 px-4 shadow">
-                <Text className="native:text-lg">Freelance</Text>
-              </TooltipContent>
-            </Tooltip>
-          </View>
-        </CardHeader>
-        <CardContent>
-          <View className="flex-row justify-around gap-3">
-            <View className="items-center">
-              <Text className="text-sm text-muted-foreground">Dimension</Text>
-              <Text className="text-xl font-semibold">C-137</Text>
-            </View>
-            <View className="items-center">
-              <Text className="text-sm text-muted-foreground">Age</Text>
-              <Text className="text-xl font-semibold">70</Text>
-            </View>
-            <View className="items-center">
-              <Text className="text-sm text-muted-foreground">Species</Text>
-              <Text className="text-xl font-semibold">Human</Text>
-            </View>
-          </View>
-        </CardContent>
-        <CardFooter className="flex-col gap-3 pb-0">
-          <View className="flex-row items-center overflow-hidden">
-            <Text className="text-sm text-muted-foreground">Productivity:</Text>
-            <LayoutAnimationConfig skipEntering>
-              <Animated.View
-                key={progress}
-                entering={FadeInUp}
-                exiting={FadeOutDown}
-                className="w-11 items-center"
-              >
-                <Text className="text-sm font-bold text-sky-600">
-                  {progress}%
-                </Text>
-              </Animated.View>
-            </LayoutAnimationConfig>
-          </View>
-          <Progress
-            value={progress}
-            className="h-2"
-            indicatorClassName="bg-sky-600"
-          />
-          <View />
-          <Button
-            variant="default"
-            className="shadow shadow-foreground/5"
-            onPress={updateProgressValue}
+    <SafeAreaView className="flex-1 px-5 py-5">
+      <View className="flex-row justify-between align-middle">
+        <Text className="font-semibold text-2xl">Reflex</Text>
+        <View className="flex-row gap-x-3 items-center">
+          <Pressable
+            className="rounded-full"
+            android_ripple={{
+              color: "rgba(0, 0, 0, 0.10)",
+              radius: 18,
+              borderless: true,
+            }}
+            onPress={() => console.log("Heart icon pressed")}
           >
-            <Text>Update</Text>
-          </Button>
-        </CardFooter>
+            <Ionicons name="heart-outline" size={28} color="black" />
+          </Pressable>
+          <Pressable
+            className="rounded-full"
+            android_ripple={{
+              color: "rgba(0, 0, 0, 0.10)",
+              radius: 18,
+              borderless: true,
+            }}
+            onPress={() => console.log("Heart icon pressed")}
+          >
+            <Ionicons name="notifications-outline" size={28} color="black" />
+          </Pressable>
+        </View>
+      </View>
 
-        <Link href="/login" className="text-center text-sm text-sky-600">
-          Go to Login
-        </Link>
-
-        <Link href="/sign-up" className="text-center text-sm text-sky-600">
-          Go to Signup
-        </Link>
-
-        <Link href="/onboarding" className="text-center text-sm text-sky-600">
-          Go to Onboarding
-        </Link>
-      </Card>
+      <View className="flex-row justify-start">
+        <Text>Profile Icon</Text>
+        <View>
+          <Text className="text-lg font-semibold">John Doe</Text>
+          <Text className="text-sm text-muted-foreground">
+            Software Engineer
+          </Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
