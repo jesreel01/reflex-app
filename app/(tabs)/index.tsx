@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Pressable, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import Animated, {
   FadeInUp,
   FadeOutDown,
@@ -9,13 +9,24 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Text } from "~/components/ui/text";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { Carousel, Colors, Spacings } from "react-native-ui-lib";
+import { Colors, Spacings } from "react-native-ui-lib";
 import _ from "lodash";
 import { Card } from "~/components/ui/card";
-import { AntDesign, Fontisto } from "@expo/vector-icons";
+import FeedGrid from "~/components/ui/section/feed-grid";
+import Carousel from "~/components/ui/section/carousel";
+import { cn } from "~/lib/utils";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Recommendation from "../feed-tab/recommendation";
+import TrendingTab from "../feed-tab/trending";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
+
+interface Tab {
+  id: number;
+  label: string;
+  content: string;
+}
 
 export default function Screen() {
   const [progress, setProgress] = React.useState(78);
@@ -36,6 +47,10 @@ export default function Screen() {
     Colors.green20,
     Colors.purple60,
   ];
+
+  const [activeTab, setActiveTab] = React.useState(1);
+
+  const Tab = createMaterialTopTabNavigator();
 
   return (
     <SafeAreaView className="flex-1 px-5 py-5">
@@ -81,67 +96,47 @@ export default function Screen() {
           </Text>
         </View>
       </View>
-      <View className="mt-8 w-full">
-        <Carousel
-          // onChangePage={onChangePage}
-          pageWidth={340 - Spacings.s5 * 2}
-          itemSpacings={Spacings.s3}
-          initialPage={1}
-          containerStyle={{ height: 80 }}
-        >
-          <Card className="h-[80px] border-0 bg-gray-100 p-3 item-center flex-row justify-between">
-            <View>
-              <View className="flex-row">
-                <Text className="font-semibold text-lg">Sat </Text>
-                <Text className="text-lg pt-[1px]">Nov 30</Text>
-              </View>
-              <View className="flex-row items-center">
-                <Text className="font-semibold pr-4 text-xl">
-                  32/35 <Text className="text-muted-foreground">°C</Text>
-                </Text>
-                <Fontisto name="cloudy-gusts" size={18} />
-              </View>
-            </View>
-            <View className="bg-white h-[60px] w-[60px] rounded-lg justify-center items-center">
-              <AntDesign  name="calendar" size={28} color="black" />
-            </View>
-          </Card>
-          <Card className="h-[80px] border-0 bg-gray-100 p-3 item-center flex-row justify-between">
-            <View>
-              <View className="flex-row">
-                <Text className="font-semibold text-lg"> Sun </Text>
-                <Text className="text-lg pt-[1px]">Dec 01</Text>
-              </View>
-              <View className="flex-row items-center">
-                <Text className="font-semibold pr-4 text-xl">
-                  32/35 <Text className="text-muted-foreground">°C</Text>
-                </Text>
-                <Fontisto name="cloudy-gusts" size={18} />
-              </View>
-            </View>
-            <View className="bg-white h-[60px] w-[60px] rounded-lg justify-center items-center">
-              <AntDesign  name="calendar" size={28} color="black" />
-            </View>
-          </Card>
-          <Card className="h-[80px] border-0 bg-gray-100 p-3 item-center flex-row justify-between">
-            <View>
-              <View className="flex-row">
-                <Text className="font-semibold text-lg">Sat </Text>
-                <Text className="text-lg pt-[1px]">Dec 02</Text>
-              </View>
-              <View className="flex-row items-center">
-                <Text className="font-semibold pr-4 text-xl">
-                  32/35 <Text className="text-muted-foreground">°C</Text>
-                </Text>
-                <Fontisto name="cloudy-gusts" size={18} />
-              </View>
-            </View>
-            <View className="bg-white h-[60px] w-[60px] rounded-lg justify-center items-center">
-              <AntDesign  name="calendar" size={28} color="black" />
-            </View>
-          </Card>
-        </Carousel>
-      </View>
+
+      <Tab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: {
+            fontSize: 14,
+            fontWeight: "bold",
+          },
+          tabBarStyle: {
+            elevation: 0, // Remove shadow on Android
+            marginTop: 10,
+            height: 45,
+            borderTopWidth: 0, // Remove top border
+            borderBottomWidth: 1, // Add bottom border
+            borderBottomColor: Colors.grey50
+          },
+        }}
+      >
+        <Tab.Screen
+          name="feed-tab/recommendation"
+          component={Recommendation}
+          options={{
+            title: "For you",
+          }}
+        />
+        <Tab.Screen
+          name="feed-tab/trending"
+          component={TrendingTab}
+          options={{
+            title: "Trending",
+          }}
+        />
+        <Tab.Screen
+          name="feed-tab/ideas"
+          component={TrendingTab}
+          options={{
+            title: "Ideas",
+          }}
+        />
+      </Tab.Navigator>
+
+      <View className="mt-8 w-full"></View>
     </SafeAreaView>
   );
 }
