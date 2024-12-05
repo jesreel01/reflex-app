@@ -18,6 +18,9 @@ import { cn } from "~/lib/utils";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Recommendation from "../feed-tab/recommendation";
 import TrendingTab from "../feed-tab/trending";
+import WeatherWidget from "~/components/weather-widget";
+import { RefreshCwOff } from "lucide-react-native";
+import Ideas from "../feed-tab/ideas";
 
 const GITHUB_AVATAR_URI =
   "https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg";
@@ -47,8 +50,6 @@ export default function Screen() {
     Colors.green20,
     Colors.purple60,
   ];
-
-  const [activeTab, setActiveTab] = React.useState(1);
 
   const Tab = createMaterialTopTabNavigator();
 
@@ -82,34 +83,53 @@ export default function Screen() {
         </View>
       </View>
 
-      <View className="mt-8 flex-row justify-start gap-x-4">
-        <Avatar alt="Profile image" className="w-14 h-14">
-          <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
-          <AvatarFallback>
-            <Text>ZN</Text>
-          </AvatarFallback>
-        </Avatar>
-        <View>
-          <Text className="text-2xl font-semibold">Hello, John!</Text>
-          <Text className="text-base text-muted-foreground font-semibold">
-            How are you today?
-          </Text>
+      <View className="mt-8 flex-row gap-x-4 justify-between">
+        <View className="flex-row gap-x-2 items-center justify-center">
+          <Avatar alt="Profile image" className="w-14 h-14">
+            <AvatarImage source={{ uri: GITHUB_AVATAR_URI }} />
+            <AvatarFallback>
+              <Text>ZN</Text>
+            </AvatarFallback>
+          </Avatar>
+          <View>
+            <Text className="text-2xl font-semibold">Hello, John!</Text>
+            <Text className="text-base text-muted-foreground font-semibold">
+              How are you today?
+            </Text>
+          </View>
+        </View>
+        <View className="flex-row items-center gap-x-2 ">
+          <Pressable
+            className="rounded-full"
+            android_ripple={{
+              color: "rgba(0, 0, 0, 0.10)",
+              radius: 22,
+              borderless: true,
+            }}
+            onPress={() => console.log("Heart icon pressed")}
+          >
+            <RefreshCwOff size={30} color="black" />
+          </Pressable>
         </View>
       </View>
 
+      <WeatherWidget className="mt-4" />
+
       <Tab.Navigator
         screenOptions={{
+          tabBarAndroidRipple: {
+            color: "rgba(0, 0, 0, 0)",
+          },
           tabBarLabelStyle: {
             fontSize: 14,
             fontWeight: "bold",
           },
           tabBarStyle: {
             elevation: 0, // Remove shadow on Android
-            marginTop: 10,
             height: 45,
             borderTopWidth: 0, // Remove top border
             borderBottomWidth: 1, // Add bottom border
-            borderBottomColor: Colors.grey50
+            borderBottomColor: Colors.grey50,
           },
         }}
       >
@@ -129,14 +149,13 @@ export default function Screen() {
         />
         <Tab.Screen
           name="feed-tab/ideas"
-          component={TrendingTab}
+          component={Ideas}
           options={{
             title: "Ideas",
           }}
         />
       </Tab.Navigator>
 
-      <View className="mt-8 w-full"></View>
     </SafeAreaView>
   );
 }
