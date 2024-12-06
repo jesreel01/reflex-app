@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const SubscriptionScreen = () => {
+const Subscription = () => {
   return (
     <View className="flex-1 justify-center items-center bg-white">
       <Text className="text-xl font-bold">Subscription Page</Text>
@@ -10,4 +10,4 @@ const SubscriptionScreen = () => {
   );
 };
 
-export default SubscriptionScreen;
+export default Subscription;

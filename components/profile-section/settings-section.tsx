@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; 
+import { useRouter } from "expo-router";
+
 import {
   PieChart,
   Bot,
@@ -31,7 +32,7 @@ const menuItems = [
 
 const SettingsSection = () => {
 
-  const navigation = useNavigation();
+  const router = useRouter();
 
   return (
     <ScrollView className="flex-1 bg-white" showsVerticalScrollIndicator={false}>
@@ -46,6 +47,13 @@ const SettingsSection = () => {
           <Pressable
             key={index}
             className="flex-row items-center px-1 py-5 bg-white active:bg-gray-50"
+            
+            onPress={() => {
+              if (item.label === 'Subscription'){
+                console.log('Subscription');
+                router.push("/feed-tab/subscription-content/subscription");
+              }
+            }}
           >
             {({ pressed }) => (
               <>
