@@ -6,9 +6,11 @@ import {
   Pressable,
   SafeAreaView,
   useWindowDimensions,
+  TouchableOpacity,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { MasonryFlashList } from "@shopify/flash-list";
+import { useRouter } from "expo-router";
 
 const data = [
   {
@@ -70,6 +72,8 @@ const TrendingTab = () => {
   const gap = 8;
   const itemWidth = (width - 20 * (numColumns + 1)) / numColumns;
 
+  const router = useRouter();
+
   const renderItem = ({
     item,
   }: {
@@ -83,16 +87,25 @@ const TrendingTab = () => {
         overflow: "hidden",
       }}
     >
-      <Image
-        source={{ uri: item.image }}
-        style={{
-          width: itemWidth,
-          height: itemWidth / item.aspectRatio,
-          backgroundColor: "#e0e0e0",
+      <TouchableOpacity
+        onPress={() => {
+          router.push(`/feed-item/${item.id}`);
         }}
-      />
+        activeOpacity={0.7}
+        style={{ borderRadius: 8, overflow: "hidden" }}
+      >
+        <Image
+          source={{ uri: item.image }}
+          style={{
+            width: itemWidth,
+            height: itemWidth / item.aspectRatio,
+            backgroundColor: "#e0e0e0",
+          }}
+        />
+      </TouchableOpacity>
     </View>
   );
+
 
   return (
     <SafeAreaView className="flex-1 h-auto mt-3">
