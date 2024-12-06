@@ -56,19 +56,19 @@ const products: Product[] = [
   },
   {
     id: '6',
-    title: 'Samba OG Shoes',
-    image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4c70105150234ac4b948a8bf01187e0c_9366/Samba_OG_Shoes_Black_B75807_01_standard.jpg',
-    price: 6669,
-    rating: 4.0,
-    sold: 10000,
-  },
-  {
-    id: '7',
     title: 'DBTK Casual Colorful Letter Print Streetwear Short-Sleeved Cotton Men Women T-Shirt Quality Clothing',
     image: 'https://down-ph.img.susercontent.com/file/ph-11134207-7rasj-m1i3rio7r6g547.webp',
     price: 1735,
     rating: 4.8,
     sold: 6800,
+  },
+  {
+    id: '7',
+    title: 'Samba OG Shoes                                                         ',
+    image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4c70105150234ac4b948a8bf01187e0c_9366/Samba_OG_Shoes_Black_B75807_01_standard.jpg',
+    price: 6669,
+    rating: 4.0,
+    sold: 10000,
   },
   {
     id: '8',

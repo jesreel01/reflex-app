@@ -183,7 +183,7 @@ export default function ShopScreen() {
                   });
                 }else if(category.name === 'Sale'){
                   router.push({
-                    pathname: "/feed-tab/shop-content/category/category-Shoes", 
+                    pathname: "/feed-tab/shop-content/category/category-Sale", 
                   });
                 }
                 
