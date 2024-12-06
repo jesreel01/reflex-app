@@ -85,7 +85,8 @@ export default function App() {
             barcodeTypes: ["qr", "pdf417"],
           }}
           style={StyleSheet.absoluteFillObject}
-          flash={flash ? "on" : "off"}
+          // flash={flash ? "on" : "off"}
+          enableTorch={flash}
         />
 
         {/* Overlay */}
