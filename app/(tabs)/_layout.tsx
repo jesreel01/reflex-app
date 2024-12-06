@@ -1,6 +1,6 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
-import { Stack, Tabs } from "expo-router";
+import { router, Stack, Tabs } from "expo-router";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { BottomNav } from "~/components/ui/bottom-nav";
 import Svg, { Path } from "react-native-svg";
@@ -33,11 +33,15 @@ const TabLayout = () => {
         name="scan"
         options={{
           title: "Scan QR",
-          tabBarButton: (props) => <Pressable {...props} onPress={() => {
-            console.log("Scan QR button pressed");
-          }} />,
+          tabBarButton: (props) => (
+            <Pressable
+              {...props}
+              onPress={() => {
+                router.push("/qr-scanner");
+              }}
+            />
+          ),
           tabBarIcon: ({ color }) => <ScanQrCode size={20} color={color} />,
-          headerShown: false,
         }}
       />
       <Tabs.Screen
